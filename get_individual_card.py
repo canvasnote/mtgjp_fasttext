@@ -78,7 +78,10 @@ class GetCardsFromList:
 
             # extract text
             eval_text = soup.find("div", attrs={"id": "content"})
-            pretty_text = eval_text.text.strip()  # re.sub(pattern_text, eval_text.text.strip(), pattern_replace)
+            pattern_text = "\n+"
+            pattern_replace = "\n"
+            pretty_text = re.sub(pattern_text, pattern_replace, eval_text.text.strip())
+            pretty_text = re.sub("\n ", "\n", pretty_text)
             f.write(pretty_text)
 
             return pretty_text
