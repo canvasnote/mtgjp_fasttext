@@ -1,0 +1,2 @@
+class Wakati:
+    pass
