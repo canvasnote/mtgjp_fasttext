@@ -13,3 +13,9 @@ class TestGetCardsFromList(unittest.TestCase):
         for row in result:
             self.assertTrue(len(row["title"]) > 0)
             self.assertTrue(pattern.match(row["url"]))
+
+    def test_fetch_individual_card_from_url(self):
+        title = "アゾリウスの導き石/Azorius Cluestone"
+        url = "http://www.mtgwiki.com/wiki/%E3%82%A2%E3%82%BE%E3%83%AA%E3%82%A6%E3%82%B9%E3%81%AE%E5%B0%8E%E3%81%8D%E7%9F%B3/Azorius_Cluestone"
+        get_individual_card.GetCardsFromList.fetch_individual_card_from_url(title=title, url=url)
+

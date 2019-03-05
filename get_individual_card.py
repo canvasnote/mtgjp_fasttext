@@ -4,7 +4,7 @@ import csv
 import requests
 from pathlib import Path
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 
 class GetCardsFromList:
@@ -40,12 +40,47 @@ class GetCardsFromList:
                     time.sleep(time_sleep)
 
     @staticmethod
-    def fetch_individual_card_from_url(title: str, url: str) -> None:
+    def fetch_individual_card_from_url(title: str, url: str) -> str:
         save_directory = Path("card")
         save_filename = Path(title.replace("/", "_"))
         # open text
-        with open(save_filename, "w"):
-            pass
+        with open(save_directory / save_filename, "w") as f:
+            # get html
+            response = requests.get(url)
+            if response.status_code != 200:
+                raise requests.HTTPError
+
+            html = response.text
+            soup = BeautifulSoup(html, "html.parser")
+
+            # remove nav
+            header = soup.find("h3", attrs={"id": "siteSub"})
+            if header is not None:
+                header.decompose()
+            header = soup.find("div", attrs={"id": "jump-to-nav"})
+            if header is not None:
+                header.decompose()
+
+            # remove footer
+            for footer in soup.find_all("div", attrs={"id": "editsection"}):
+                footer.decompose()
+            for footer in soup.find_all("span", attrs={"class": "editsection"}):
+                footer.decompose()
+            for footer in soup.find_all("div", attrs={"class": "printfooter"}):
+                footer.decompose()
+            for footer in soup.find_all("div", attrs={"id": "ad_bottom"}):
+                footer.decompose()
+
+            # remove comment
+            for comment in soup(text=lambda x: isinstance(x, Comment)):
+                comment.extract()
+
+            # extract text
+            eval_text = soup.find("div", attrs={"id": "content"})
+            pretty_text = eval_text.text.strip()  # re.sub(pattern_text, eval_text.text.strip(), pattern_replace)
+            f.write(pretty_text)
+
+            return pretty_text
 
     @staticmethod
     def get_card_list_from_url(url: str) -> list:
