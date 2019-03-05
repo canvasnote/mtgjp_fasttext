@@ -38,7 +38,14 @@ class GetCardsFromList:
                     time.sleep(time_sleep)
 
     @staticmethod
-    def get_card_list_from_url(url):
+    def fetch_individual_card_from_url(title: str, url: str) -> None:
+        save_filename = title.replace("/", "_")
+        # open text
+        with open(save_filename, "w"):
+            pass
+
+    @staticmethod
+    def get_card_list_from_url(url: str) -> list:
         domain = "http://www.mtgwiki.com"
 
         response = requests.get(url)
