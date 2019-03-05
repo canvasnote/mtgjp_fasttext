@@ -2,6 +2,7 @@ import time
 import re
 import csv
 import requests
+from pathlib import  Path
 
 from bs4 import BeautifulSoup
 
@@ -13,10 +14,11 @@ class GetCardsFromList:
     @staticmethod
     def get_individual_cards_from_list():
         # Load list from csv
-        load_file_name = "individual_url_list.csv"
+        load_file_directory = Path("expansion")
+        load_file_name = Path("individual_url_list.csv")
         time_sleep = 6
 
-        with open(load_file_name, "r", encoding="utf8") as f:
+        with open(load_file_directory / load_file_name, "r", encoding="utf8") as f:
             reader = csv.reader(f)
 
             # skip header
