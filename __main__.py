@@ -27,4 +27,5 @@ if __name__ == "__main__":
         get_individual_card.GetCardsFromList().get_individual_cards_from_list()
 
     if args.wakati:
-        wakati()
+        w = wakati.Wakati()
+        w.wakati_all_file()
