@@ -34,7 +34,7 @@ class GetCardsFromList:
                     title = card_url["title"]
                     url = card_url["url"]
                     print(title, url)
-                    GetCardsFromList.fetch_individual_card_from_url()
+                    GetCardsFromList.fetch_individual_card_from_url(title=title, url=url)
 
                     # sleep
                     time.sleep(time_sleep)
@@ -45,7 +45,7 @@ class GetCardsFromList:
         save_directory = Path("card")
         save_filename = Path(title.replace("/", "_"))
         # open text
-        with open(save_directory / save_filename, "w") as f:
+        with open(save_directory / save_filename, "w", encoding="utf8") as f:
             # get html
             response = requests.get(url)
             if response.status_code != 200:
