@@ -2,7 +2,7 @@ import time
 import re
 import csv
 import requests
-from pathlib import  Path
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
@@ -41,7 +41,8 @@ class GetCardsFromList:
 
     @staticmethod
     def fetch_individual_card_from_url(title: str, url: str) -> None:
-        save_filename = title.replace("/", "_")
+        save_directory = Path("card")
+        save_filename = Path(title.replace("/", "_"))
         # open text
         with open(save_filename, "w"):
             pass
