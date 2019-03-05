@@ -34,10 +34,11 @@ class GetCardsFromList:
                     title = card_url["title"]
                     url = card_url["url"]
                     print(title, url)
-                    # fetch_individual_card_from_url()
+                    GetCardsFromList.fetch_individual_card_from_url()
 
                     # sleep
                     time.sleep(time_sleep)
+            print("Complete")
 
     @staticmethod
     def fetch_individual_card_from_url(title: str, url: str) -> str:
