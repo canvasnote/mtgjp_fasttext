@@ -2,7 +2,7 @@ import argparse
 
 import get_cards_list
 import get_individual_card
-import  wakati
+import wakati
 
 if __name__ == "__main__":
     """
