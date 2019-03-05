@@ -1,6 +1,7 @@
 import argparse
 
 import get_cards_list
+import get_individual_card
 
 if __name__ == "__main__":
     """
@@ -17,4 +18,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.list:
-        get_cards_list.GetCardsList()
+        get_cards_list.GetCardsList().get_cards_list()
+
+    if args.get_cards:
+        get_individual_card.GetCardsFromList().get_individual_cards_from_list()
