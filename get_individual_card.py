@@ -1,3 +1,4 @@
+import os
 import time
 import re
 import csv
@@ -41,9 +42,14 @@ class GetCardsFromList:
             print("Complete")
 
     @staticmethod
-    def fetch_individual_card_from_url(title: str, url: str) -> str:
+    def fetch_individual_card_from_url(title: str, url: str, skip_exist_file=True) -> str or None:
         save_directory = Path("card")
         save_filename = Path(title.replace("/", "_"))
+
+        # skip if file already exists
+        if os.path.exists(save_directory / save_filename) and skip_exist_file:
+            return None
+
         # open text
         with open(save_directory / save_filename, "w", encoding="utf8") as f:
             # get html
