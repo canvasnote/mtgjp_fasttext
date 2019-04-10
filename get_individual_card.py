@@ -35,10 +35,11 @@ class GetCardsFromList:
                     title = card_url["title"]
                     url = card_url["url"]
                     print(title, url)
-                    GetCardsFromList.fetch_individual_card_from_url(title=title, url=url)
+                    result = GetCardsFromList.fetch_individual_card_from_url(title=title, url=url)
 
                     # sleep
-                    time.sleep(time_sleep)
+                    if result != 'skip':
+                        time.sleep(time_sleep)
             print("Complete")
 
     @staticmethod
@@ -48,7 +49,7 @@ class GetCardsFromList:
 
         # skip if file already exists
         if os.path.exists(save_directory / save_filename) and skip_exist_file:
-            return None
+            return 'skip'
 
         # open text
         with open(save_directory / save_filename, "w", encoding="utf8") as f:
