@@ -3,6 +3,7 @@ import argparse
 import get_cards_list
 import get_individual_card
 import wakati
+import concat_wakati
 
 if __name__ == "__main__":
     """
@@ -17,6 +18,7 @@ if __name__ == "__main__":
     parser.add_argument("-l", "--list", action="store_true")
     parser.add_argument("-g", "--get-cards", action="store_true")
     parser.add_argument("-w", "--wakati", action="store_true")
+    parser.add_argument("-c", "--concat-wakati", action="store_true")
     # parser.add_argument("-h", "--help", help="このヘルプを表示します。")
     args = parser.parse_args()
 
@@ -29,3 +31,6 @@ if __name__ == "__main__":
     if args.wakati:
         w = wakati.Wakati()
         w.wakati_all_file()
+
+    if args.concat_wakati:
+        concat_wakati.ConcatFiles.concat_folder('card_wakati/')

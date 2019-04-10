@@ -4,6 +4,7 @@ import sys
 import os
 import io
 
+
 class ConcatFiles:
     @staticmethod
     def concat_folder(path):

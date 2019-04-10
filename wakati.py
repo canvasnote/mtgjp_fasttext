@@ -21,6 +21,6 @@ class Wakati:
             with open(destination, "w", encoding="utf8") as f_write:
                 for i, row in enumerate(f_read):
                     if i == 0:
-                        f_write.write(row + " ")
+                        f_write.write(row.replace("/", " / ") + " ")
                     result = [token for token in tokenizer.tokenize(row, wakati=True)]
                     f_write.write(" ".join(result) + "\n")
