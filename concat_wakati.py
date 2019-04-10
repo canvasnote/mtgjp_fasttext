@@ -18,7 +18,7 @@ class ConcatFiles:
                 print('not directory')
                 with open(in_file_name, mode='r', encoding='UTF8') as in_file:
                     for line in in_file.read():
-                        out_file.write(line.replace('\n', ''))
+                        out_file.write(line.replace('\n', ' '))
                     out_file.write('\n')
 
 
