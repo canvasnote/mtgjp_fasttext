@@ -4,6 +4,7 @@ import get_cards_list
 import get_individual_card
 import wakati
 import concat_wakati
+import make_model
 
 if __name__ == "__main__":
     """
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     parser.add_argument("-g", "--get-cards", action="store_true")
     parser.add_argument("-w", "--wakati", action="store_true")
     parser.add_argument("-c", "--concat-wakati", action="store_true")
+    parser.add_argument("-m", "--make-model", action="store_true")
     # parser.add_argument("-h", "--help", help="このヘルプを表示します。")
     args = parser.parse_args()
 
@@ -34,3 +36,6 @@ if __name__ == "__main__":
 
     if args.concat_wakati:
         concat_wakati.ConcatFiles.concat_folder('card_wakati/')
+
+    if args.make_model:
+        make_model.MakeModel.make_model(input_file='./card_wakati/concat/cards_concat', output_filename='model')
